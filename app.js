@@ -10,17 +10,10 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
-app.post("application/json/:jsonMap", (req, res) => {
-    
-  const jsonMap = req.params.jsonMap;
-  //console.log(output);
-  //res.send(JSON.stringify(output));
-  res.redirect(`/lazy-developer/${jsonMap}`);
-})
 
 app
-  .get("/lazy-developer/:jsonMap", (req, res) => {
-    const jsonMap = req.params.jsonMap;
+  .post("/lazy-developer/:jsonMap", (req, res) => {
+    const jsonMap = req.body;
     const output = LazyDeveloper(jsonMap);
     //console.log(output);
     //res.send(JSON.stringify(output));
