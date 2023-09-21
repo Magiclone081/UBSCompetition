@@ -17,6 +17,6 @@ app
     const output = LazyDeveloper(jsonMap);
     //console.log(output);
     //res.send(JSON.stringify(output));
-    res.json(output);
+    res.send(output);
   })
   .listen(PORT, () => console.log(`Listening on ${PORT}`));
