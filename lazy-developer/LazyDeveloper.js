@@ -39,7 +39,7 @@ exports.LazyDeveloper = (jsonMap) => {
             resultMap.set(statement, [""]);
         }
     }
-    return resultMap;
+    return JSON.stringify(Object.fromEntries(resultMap));
 }
 
 
