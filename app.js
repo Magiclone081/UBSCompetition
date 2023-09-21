@@ -12,7 +12,7 @@ app.get('/', (req, res) => {
 
 
 app
-  .post("/lazy-developer", (req, res) => {
+  .post("/api/lazy-developer", (req, res) => {
     const jsonMap = req.body;
     const output = LazyDeveloper(jsonMap);
     //console.log(output);
