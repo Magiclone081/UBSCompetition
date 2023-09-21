@@ -15,7 +15,7 @@ app
   .post("/lazy-developer", (req, res) => {
     const jsonMap = req.body;
     const output = LazyDeveloper(jsonMap);
-    //console.log(output);
+    console.log(output);
     //res.send(JSON.stringify(output));
     res.send(output);
   })
