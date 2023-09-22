@@ -11,6 +11,7 @@ exports.LazyDeveloper = (jsonMap) => {
     const statements = jsonMap["statements"];
 
     normalizedClasses = new Map(classesMap.flatMap(m => Object.entries(m)));
+    
 
     let resultMap = new Map();
 

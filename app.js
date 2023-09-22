@@ -92,6 +92,8 @@ app
     const output = LazyDeveloper(jsonMap);
     console.log("jsonMap");
     console.log(jsonMap);
+    classes = jsonMap["classes"];
+    console.log(Object.values(classes));
     console.log("output");
     console.log(output);
     //res.send(JSON.stringify(output));
