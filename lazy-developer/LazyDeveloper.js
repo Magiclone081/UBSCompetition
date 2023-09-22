@@ -10,8 +10,8 @@ exports.LazyDeveloper = (jsonMap) => {
     const classesMap = jsonMap["classes"];
     const statements = jsonMap["statements"];
 
-    normalizedClasses = new Map(classesMap.flatMap(m => Object.entries(m)));
-    
+    //const normalizedClasses = classesMap.flatMap(m => Object.entries(m));
+    const normalizedClasses = classesMap[0];
 
     let resultMap = new Map();
 
@@ -25,7 +25,7 @@ exports.LazyDeveloper = (jsonMap) => {
         let currentLocation = null;
 
         for (let i = 0; i < tokens.length - 1; i++) {
-            if (currentLocation instanceof Map || currentLocation instanceof Object || currentLocation == null) {
+            if (!(currentLocation instanceof Array) && !(currentLocation instanceof String) || currentLocation == null) {
                 currentLocation = getNextLocation(normalizedClasses, currentLocation, tokens[i]);
             }
             if (currentLocation == null) {
@@ -45,6 +45,7 @@ exports.LazyDeveloper = (jsonMap) => {
         } else {
             // Statement does not correspond to any navigable class, no suggestion should be
             // returned
+            
             resultMap.set(statement, [""]);
         }
     }
@@ -55,15 +56,16 @@ exports.LazyDeveloper = (jsonMap) => {
 const getAllPossibilities = (normalizedClasses, currentLocation) => {
     if (shouldResolve(currentLocation)) {
         currentLocation = getNextLocation(normalizedClasses, null, currentLocation.toString());
+        currentLocation = currentLocation === null ? [""] : currentLocation;
     }
     // If current location is null, no traversal has been done previously, so keys
     // of normalized class should be returned
     if (currentLocation === null) {
-        return Array.from(normalizedClasses.keys());
+        return Array.from(Object.keys(normalizedClasses));
     }
     if (currentLocation instanceof Array) {
         // Assumption 2 made as per header
-        //return [""];
+        // return [""];
         return currentLocation;
     }
     // If current location is a object, return all the keys
@@ -84,16 +86,20 @@ const shouldResolve = (currentLocation) => {
 
 const getNextLocation = (normalizedClasses, currentLocation, token) => {
     if (currentLocation instanceof Array) {
-        const getResult = normalizedClasses.get(tokenLookup);
+        const getResult = normalizedClasses[tokenLookup];
         return (getResult === undefined) ? null : getResult;
     }
     if (currentLocation instanceof Object || currentLocation == null) {
         // Assumption 3 made as per header
-        const tokenLookup = currentLocation === null ? token : Object.getOwnPropertyDescriptors(currentLocation).token;
+        console.log(`currentLocation${currentLocation}`);
+        console.log(`token${token}`);
+        const tokenLookup = currentLocation === null ? token : currentLocation[token];
+        console.log(`tokenLookup${tokenLookup}`);
         if (tokenLookup === null) {
             return null;
         }
-        const getResult = normalizedClasses.get(tokenLookup);
+        const getResult = normalizedClasses[tokenLookup];
+        console.log(`normalizedClasses${normalizedClasses}`);
         return (getResult === undefined) ? null : getResult;
     }
     return null;
