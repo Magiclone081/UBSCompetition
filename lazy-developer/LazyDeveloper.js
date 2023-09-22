@@ -62,7 +62,8 @@ const getAllPossibilities = (normalizedClasses, currentLocation) => {
     }
     if (currentLocation instanceof Array) {
         // Assumption 2 made as per header
-        return [""];
+        //return [""];
+        return currentLocation;
     }
     // If current location is a object, return all the keys
     if (currentLocation instanceof Object) {
