@@ -39,7 +39,7 @@ exports.LazyDeveloper = (jsonMap) => {
             // Fetch all words with prefix being last token of the statement
             const lastToken = tokens[tokens.length - 1];
             let wordCandidates = getAllPossibilities(normalizedClasses, currentLocation);
-            let wordsStartWithToken = wordCandidates.filter(str => str.startsWith(lastToken));
+            let wordsStartWithToken = wordCandidates.filter(str => str.startsWith(lastToken) && str != lastToken);
             wordsStartWithToken.sort();
             const top5wordList = wordsStartWithToken.slice(0, 5);
             resultMap.set(statement, top5wordList.length === 0 ? [""] : top5wordList);
@@ -50,7 +50,6 @@ exports.LazyDeveloper = (jsonMap) => {
             resultMap.set(statement, [""]);
         }
     }
-    resultMap.set('Status.PartiallyFilled', [""]);
     return JSON.stringify(Object.fromEntries(resultMap));
 }
 
