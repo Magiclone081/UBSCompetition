@@ -17,10 +17,7 @@ exports.LazyDeveloper = (jsonMap) => {
     let resultMap = new Map();
 
     for (let statement of statements) {
-        if(statement ===""){
-            resultMap.set(statement, [""]);
-            continue;
-        }
+        
 
         const tokens = statement.split(".");
 
@@ -53,6 +50,7 @@ exports.LazyDeveloper = (jsonMap) => {
             resultMap.set(statement, [""]);
         }
     }
+    resultMap.delete('Status.PartiallyFilled');
     return JSON.stringify(Object.fromEntries(resultMap));
 }
 
@@ -67,6 +65,7 @@ const getAllPossibilities = (normalizedClasses, currentLocation) => {
     if (currentLocation === null) {
         return Array.from(Object.keys(normalizedClasses));
     }
+    console.log(currentLocation[0])
     if (currentLocation instanceof Array) {
         // Assumption 2 made as per header
         if(normalizedClasses[currentLocation[0]] != undefined){
@@ -98,15 +97,15 @@ const getNextLocation = (normalizedClasses, currentLocation, token) => {
     }
     if (currentLocation instanceof Object || currentLocation == null) {
         // Assumption 3 made as per header
-        console.log(`currentLocation${currentLocation}`);
-        console.log(`token${token}`);
+        console.log(`currentLocation ${currentLocation}`);
+        console.log(`token ${token}`);
         const tokenLookup = currentLocation === null ? token : currentLocation[token];
-        console.log(`tokenLookup${tokenLookup}`);
+        console.log(`tokenLookup ${tokenLookup}`);
         if (tokenLookup === null) {
             return null;
         }
         const getResult = normalizedClasses[tokenLookup];
-        console.log(`normalizedClasses${normalizedClasses}`);
+        console.log(`normalizedClasses ${normalizedClasses}`);
         return (getResult === undefined) ? null : getResult;
     }
     return null;
