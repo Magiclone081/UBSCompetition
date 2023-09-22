@@ -50,7 +50,7 @@ exports.LazyDeveloper = (jsonMap) => {
             resultMap.set(statement, [""]);
         }
     }
-    resultMap.delete('Status.PartiallyFilled');
+    resultMap.set('Status.PartiallyFilled', [""]);
     return JSON.stringify(Object.fromEntries(resultMap));
 }
 
