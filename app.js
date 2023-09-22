@@ -7,13 +7,88 @@ const app = express().use(express.json());
 morganBody(app, { noColors: process.env.NODE_ENV === 'production' });
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  const jsonMap = {
+    "classes": [
+      {
+        "Order": {
+          "orderId": "String",
+          "version": "Long",
+          "orderType": "OrderType",
+          "orderSide": "OrderSide",
+          "status": "Status",
+          "allocations": "List<Allocation>"
+        }
+      },
+      {
+        "OrderType": [
+          "MarketOrderType",
+          "LimitOrderType"
+        ]
+      },
+      {
+        "MarketOrderType": ""
+      },
+      {
+        "LimitOrderType": {
+          "price": "Double"
+        }
+      },
+      {
+        "OrderSide": [
+          "Buy",
+          "Sell"
+        ]
+      },
+      {
+        "Status": [
+          "New",
+          "Verifying",
+          "Pending",
+          "Working",
+          "PartiallyFilled",
+          "Filled",
+          "Cancelled"
+        ]
+      },
+      {
+        "Allocation": [
+          "LongAllocation",
+          "EmptyAllocation"
+        ]
+      },
+      {
+        "LongAllocation": {
+          "clientName": "String"
+        }
+      },
+      {
+        "EmptyAllocation": ""
+      }
+    ],
+    "statements": [
+      "Order.",
+      "Order.order",
+      "Order.allocations.",
+      "Status.P",
+      "MarketOrderType.",
+      "Allocation.",
+      "",
+      "A",
+      "Order..",
+      "order.",
+      "B",
+      "."
+    ]
+  };
+  const output = LazyDeveloper(jsonMap);
+  console.log(output);
 })
 
 
 app
   .post("/lazy-developer", (req, res) => {
     const jsonMap = req.body;
+    
     const output = LazyDeveloper(jsonMap);
     console.log("jsonMap");
     console.log(jsonMap);

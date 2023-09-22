@@ -1,4 +1,11 @@
-
+// classes = [{"Order": {...}, "Order2": {...}}, {"OrderType": {...}}]
+// Assumptions:
+// 1. When mapping contains a map, key must be string
+// 2. When mapping contains a list, it must be a list of string
+// 3. Type definition within each class is assumed to be String, i.e. Can be
+// "String", "OrderType", etc but not 123
+// 4. String with exact match will still be returned, e.g. Order.orderId will
+// have orderId returned as suggested result
 exports.LazyDeveloper = (jsonMap) => {
     const classesMap = jsonMap["classes"];
     const statements = jsonMap["statements"];
@@ -8,6 +15,7 @@ exports.LazyDeveloper = (jsonMap) => {
     let resultMap = new Map();
 
     for (let statement of statements) {
+        
 
         const tokens = statement.split(".");
 
@@ -54,7 +62,7 @@ const getAllPossibilities = (normalizedClasses, currentLocation) => {
     }
     if (currentLocation instanceof Array) {
         // Assumption 2 made as per header
-        return currentLocation;
+        return [""];
     }
     // If current location is a object, return all the keys
     if (currentLocation instanceof Object) {
