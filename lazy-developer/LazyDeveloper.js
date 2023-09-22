@@ -9,6 +9,7 @@
 exports.LazyDeveloper = (jsonMap) => {
     const classesMap = jsonMap["classes"];
     const statements = jsonMap["statements"];
+    
 
     //const normalizedClasses = classesMap.flatMap(m => Object.entries(m));
     const normalizedClasses = classesMap[0];
@@ -16,7 +17,10 @@ exports.LazyDeveloper = (jsonMap) => {
     let resultMap = new Map();
 
     for (let statement of statements) {
-        
+        if(statement ===""){
+            resultMap.set(statement, [""]);
+            continue;
+        }
 
         const tokens = statement.split(".");
 
