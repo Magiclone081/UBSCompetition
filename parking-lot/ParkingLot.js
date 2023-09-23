@@ -165,6 +165,16 @@ exports.ParkingLot = (parkingLotInfoMap) => {
         vehiclesRemaining['Bike'] -= numberOfCarSlotBikesFilled * 5;
     }
 
+    if (parkingCharges['Bus'] < parkingCharges['Car'] * 2 + parkingCharges['Bike'] * 2 && vehiclesRemaining['Car'] >= 2 && vehiclesRemaining['Bike'] >= 2) {
+        for (;busParkingSlotsUser['Bus']>0 && vehiclesRemaining['Car'] >= 2 && vehiclesRemaining['Bike'] >= 2 ;busParkingSlotsUser['Bus']--) {
+            vehiclesRemaining['Bus'] += 1;
+            vehiclesRemaining['Car'] -= 2;
+            busParkingSlotsUser['Car'] += 2;
+            vehiclesRemaining['Bike'] -= 2;
+            busParkingSlotsUser['Bike'] += 2;
+        }
+    }
+
     if (parkingCharges['Bus'] < parkingCharges['Car'] * 2 + parkingCharges['Bike'] && vehiclesRemaining['Car'] >= 2 && vehiclesRemaining['Bike'] >= 1) {
         vehiclesRemaining['Bus'] += 1;
         busParkingSlotsUser['Bus'] -= 1;
@@ -209,7 +219,7 @@ exports.ParkingLot = (parkingLotInfoMap) => {
     console.log(`${carParkingSlotsUser['Bus']} ${busParkingSlotsUser['Bus']} ${carParkingSlotsUser['Car']} ${busParkingSlotsUser['Car']} ${carParkingSlotsUser['Bike']} ${busParkingSlotsUser['Bike']}`);
     return {
         "Answer": {
-            "Profit": (carParkingSlotsUser['Bus']+busParkingSlotsUser['Bus'])*parkingCharges['Bus'] + (carParkingSlotsUser['Car']+busParkingSlotsUser['Car'])*parkingCharges['Car'] + (carParkingSlotsUser['Bike']+busParkingSlotsUser['Bike'])*parkingCharges['Bike'],
+            "Profit": (carParkingSlotsUser['Bus'] + busParkingSlotsUser['Bus']) * parkingCharges['Bus'] + (carParkingSlotsUser['Car'] + busParkingSlotsUser['Car']) * parkingCharges['Car'] + (carParkingSlotsUser['Bike'] + busParkingSlotsUser['Bike']) * parkingCharges['Bike'],
             "BusRejections": vehiclesRemaining['Bus'],
             "CarRejections": vehiclesRemaining['Car'],
             "BikeRejections": vehiclesRemaining['Bike']
