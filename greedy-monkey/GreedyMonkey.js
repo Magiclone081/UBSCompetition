@@ -3,7 +3,7 @@
 exports.GreedyMonkey = (InputMap) => {
     const noOfWeightMonkeyCarry = InputMap['w'];
     const basketVolume = InputMap['v'];
-    const allFruits = InputMap['f'];
+    const allFruits = Array.from(InputMap['f']);
     console.log(allFruits instanceof Array);
     // let currentWeight = 0;
     // let volumeUsed = 0;
