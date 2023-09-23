@@ -67,6 +67,7 @@ app
     const output = DigitalColony(reqBody);
 
     console.log(output);
+    output.push("");
     //res.send(JSON.stringify(output));
     res.send(output);
   })
