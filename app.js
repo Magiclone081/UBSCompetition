@@ -33,16 +33,14 @@ app.get('/', (req, res) => {
   }
   const inputMap = inputStr;
 
-  const inputMap2 = {
-    "w": 100,
-    "v": 150,
-    "f": [
-      [110, 80, 60],
-      [80, 155, 90]
-    ]
-  }
-
-  const output = GreedyMonkey(inputMap);
+  const inputMap2 = [
+    { generations: 2, colony: '7750' },
+    // { generations: 10, colony: '7750' },
+    // { generations: 50, colony: '6221' }
+  ];
+  
+  const output = DigitalColony(inputMap2);
+  //const output = GreedyMonkey(inputMap);
   //const output = LazyDeveloper(jsonMap);
   console.log(output);
 })
