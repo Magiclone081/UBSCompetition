@@ -53,7 +53,8 @@ app
     
     console.log(output);
     //res.send(JSON.stringify(output));
-    res.text(output);
+    res.type('txt');
+    res.send(output);
   })
 
 app
