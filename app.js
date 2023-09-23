@@ -53,6 +53,7 @@ app
     
     console.log(output);
     //res.send(JSON.stringify(output));
+    res.type('text/plain');
     res.send(output);
   })
 
