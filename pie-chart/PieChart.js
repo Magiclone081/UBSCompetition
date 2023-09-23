@@ -41,7 +41,7 @@ const pieChartCreator = (datum) => {
 
     for (let i = allRad.length - 1; i >= 0; i--) {
         console.log(allRad[i]);
-        returnArray.push(Math.round((returnArray[returnArray.length - 1] + allRad[i]) * 100000000) / 100000000);
+        returnArray.push(returnArray[returnArray.length - 1] + allRad[i]);
     }
     return returnArray;
 }
