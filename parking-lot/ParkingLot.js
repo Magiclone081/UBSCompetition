@@ -168,6 +168,7 @@ exports.ParkingLot = (parkingLotInfoMap) => {
     let lastVehiclesBusRemaining;
     let lastVehiclesCarRemaining;
     let lastVehiclesBikeRemaining;
+    let i = 0;
     do {
         lastVehiclesBusRemaining = vehiclesRemaining['Bus'];
         lastVehiclesCarRemaining = vehiclesRemaining['Car'];
@@ -222,8 +223,8 @@ exports.ParkingLot = (parkingLotInfoMap) => {
                 }
             }
         }
-
-    } while (lastVehiclesBusRemaining == vehiclesRemaining['Bus'] && lastVehiclesCarRemaining == vehiclesRemaining['Car'] && lastVehiclesBikeRemaining == vehiclesRemaining['Bike']);
+        i++;
+    } while (lastVehiclesBusRemaining == vehiclesRemaining['Bus'] && lastVehiclesCarRemaining == vehiclesRemaining['Car'] && lastVehiclesBikeRemaining == vehiclesRemaining['Bike'] || i >=3);
     
 
 
