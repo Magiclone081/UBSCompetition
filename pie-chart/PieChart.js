@@ -30,7 +30,7 @@ const pieChartCreator = (datum) => {
     let allRad = [];
     for (let val of dataValues) {
         console.log(val);
-        let rad = val / base * pi * 2.0 * (2.0 * pi - pi / 1000.0 * noOfAdjustedSmall) / (2 * pi - sumOfAllAdjusted);
+        let rad = val / base * pi * 2.0 * (2.0 * pi - 3.14159 / 1000.0 * noOfAdjustedSmall) / (2 * pi - sumOfAllAdjusted);
         if (val / base * 10000.0 < 5) {
             rad = pi / 1000.0;
             sumOfAllAdjusted += val / base * pi * 2;
@@ -63,7 +63,7 @@ const splitChordDiagramCreator = (datum) => {
     let sumOfAllAdjusted = 0;
 
     for (let val of dataValues) {
-        let rad = val / base * instrumentPieChartBase * (instrumentPieChartBase - pi / 1000.0 * noOfAdjustedSmall) / (instrumentPieChartBase - sumOfAllAdjusted);
+        let rad = val / base * instrumentPieChartBase * (instrumentPieChartBase - 3.14159 / 1000.0 * noOfAdjustedSmall) / (instrumentPieChartBase - sumOfAllAdjusted);
         if (val / base * instrumentPieChartBase * 1000 < pi) {
             rad = pi / 1000.0;
             sumOfAllAdjusted += val / base * instrumentPieChartBase;
@@ -90,7 +90,7 @@ const splitChordDiagramCreator = (datum) => {
     aggregateCurrency.sort(function(a, b){return a.totalPrice-b.totalPrice});
     console.log(aggregateCurrency);
     for (let val of aggregateCurrency) {
-        let rad = val['totalPrice'] / base * otherBase * (otherBase - pi / 1000.0 * noOfAdjustedSmall) / (otherBase - sumOfAllAdjusted);
+        let rad = val['totalPrice'] / base * otherBase * (otherBase - 3.14159 / 1000.0 * noOfAdjustedSmall) / (otherBase - sumOfAllAdjusted);
         if (val['totalPrice'] / base * otherBase * 1000 < pi) {
             rad = pi / 1000.0;
             sumOfAllAdjusted += val['totalPrice'] / base * otherBase;
@@ -121,7 +121,7 @@ const splitChordDiagramCreator = (datum) => {
 
     aggregateSector.sort(function(a, b){return a.totalPrice-b.totalPrice});
     for (let val of aggregateSector) {
-        let rad = val['totalPrice'] / base * otherBase * (otherBase - pi / 1000.0 * noOfAdjustedSmall) / (otherBase - sumOfAllAdjusted);
+        let rad = val['totalPrice'] / base * otherBase * (otherBase - 3.14159 / 1000.0 * noOfAdjustedSmall) / (otherBase - sumOfAllAdjusted);
         if (val['totalPrice'] / base * otherBase * 1000 < pi) {
             rad = pi / 1000.0;
             sumOfAllAdjusted += val['totalPrice'] / base * otherBase;
@@ -153,7 +153,7 @@ const splitChordDiagramCreator = (datum) => {
 
     aggregateAssetClass.sort(function(a, b){return a.totalPrice-b.totalPrice});
     for (let val of aggregateAssetClass) {
-        let rad = val['totalPrice'] / base * otherBase * (otherBase - pi / 1000.0 * noOfAdjustedSmall) / (otherBase - sumOfAllAdjusted);
+        let rad = val['totalPrice'] / base * otherBase * (otherBase - 3.14159 / 1000.0 * noOfAdjustedSmall) / (otherBase - sumOfAllAdjusted);
         if (val['totalPrice'] / base * otherBase * 1000 < pi) {
             rad = pi / 1000.0;
             sumOfAllAdjusted += val['totalPrice'] / base * otherBase;
@@ -185,7 +185,7 @@ const splitChordDiagramCreator = (datum) => {
 
     aggregateRegion.sort(function(a, b){return a.totalPrice-b.totalPrice});
     for (let val of aggregateRegion) {
-        let rad = val['totalPrice'] / base * otherBase * (otherBase - pi / 1000.0 * noOfAdjustedSmall) / (otherBase - sumOfAllAdjusted);
+        let rad = val['totalPrice'] / base * otherBase * (otherBase - 3.14159 / 1000.0 * noOfAdjustedSmall) / (otherBase - sumOfAllAdjusted);
         if (val['totalPrice'] / base * otherBase * 1000 < pi) {
             rad = pi / 1000.0;
             sumOfAllAdjusted += val['totalPrice'] / base * otherBase;

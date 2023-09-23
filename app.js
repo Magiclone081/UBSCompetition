@@ -111,7 +111,7 @@ app.get('/', (req, res) => {
         "region": "NORTH_AMERICA"
       },
       {
-        "quantity": 39,
+        "quantity": 1,
         "price": 5.0,
         "currency": "GBP",
         "sector": "Education",
@@ -135,7 +135,7 @@ app.get('/', (req, res) => {
         "region": "APAC"
       }
     ],
-    "part": "SECOND" 
+    "part": "FIRST" 
   }
 
   const output = PieChart(pieChartInfo);
