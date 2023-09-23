@@ -12,8 +12,44 @@ exports.GreedyMonkey = (InputMap) => {
     
 
 
-    return recursiveGreedyMonkey(allFruits, noOfWeightMonkeyCarry, basketVolume);
+    return iterativeGreedyMonkey(allFruits, noOfWeightMonkeyCarry, basketVolume);
 }
+
+const iterativeGreedyMonkey = (allFruits, noOfRemainingWeightMonkeyCarry, noOfRemainingBasketVolume) => {
+    const stack = [];
+    let result = 0;
+    let index = 0;
+  
+    while (true) {
+      if (index >= allFruits.length) {
+        if (stack.length === 0) {
+          break;
+        }
+        const { fruits, weight, volume, score } = stack.pop();
+        result = Math.max(result, score);
+        index = fruits + 1;
+        noOfRemainingWeightMonkeyCarry = weight;
+        noOfRemainingBasketVolume = volume;
+        continue;
+      }
+  
+      const currentFruit = allFruits[index];
+  
+      if (currentFruit[0] <= noOfRemainingWeightMonkeyCarry && currentFruit[1] <= noOfRemainingBasketVolume) {
+        const scoreForAddingFruitToBasket = currentFruit[2];
+        stack.push({
+          fruits: index,
+          weight: noOfRemainingWeightMonkeyCarry - currentFruit[0],
+          volume: noOfRemainingBasketVolume - currentFruit[1],
+          score: scoreForAddingFruitToBasket + result,
+        });
+      }
+  
+      index++;
+    }
+  
+    return result;
+  };
 
 const recursiveGreedyMonkey = (allFruits, noOfRemainingWeightMonkeyCarry, noOfRemainingBasketVolume) =>{
     if(allFruits.length <= 1){
