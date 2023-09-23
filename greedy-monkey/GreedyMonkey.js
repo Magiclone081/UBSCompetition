@@ -24,7 +24,7 @@ const recursiveGreedyMonkey = (allFruits, noOfRemainingWeightMonkeyCarry, noOfRe
         return 0;
     }
 
-    if(dp[allFruits.length][noOfRemainingWeightMonkeyCarry][noOfRemainingBasketVolume] != undefined || dp[allFruits.length][noOfRemainingWeightMonkeyCarry][noOfRemainingBasketVolume] != -1){
+    if(dp[allFruits.length][noOfRemainingWeightMonkeyCarry][noOfRemainingBasketVolume] != undefined && dp[allFruits.length][noOfRemainingWeightMonkeyCarry][noOfRemainingBasketVolume] != -1){
         return dp[allFruits.length][noOfRemainingWeightMonkeyCarry][noOfRemainingBasketVolume];
     }
 
