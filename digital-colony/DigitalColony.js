@@ -11,18 +11,16 @@ exports.DigitalColony = (generationRequest) => {
         for(let currentGeneration = 0; currentGeneration < totalGeneration; currentGeneration++){
             console.log(`current iteration: ${currentGeneration}`);
             
-            let newColony = [];
             
-            for(let i = 0; i < colony.length-1; i++){
-                newColony.push(colony[i]);
-                const signature = colony[i] - colony[i+1] < 0 ? 10-(colony[i] - colony[i+1]) : colony[i] - colony[i+1];
-                newColony.push((colonyWeight + signature)%10);
+            
+            for(let i = colony.length-1; i > 0; i--){
+                
+                const signature = colony[i-1] - colony[i] < 0 ? 10-(colony[i-1] - colony[i]) : colony[i-1] - colony[i];
+                colony.splice(i, 0, (colonyWeight + signature)%10)
                 
             }
             //console.log(`new colony${colonyWeight}`)
-            newColony.push(colony[colony.length-1]);
             //console.log(`entire colony${newColony}`)
-            colony = newColony;
             colonyWeight = colony.reduce((currSum, i) => currSum + i, 0);
            // console.log(`${colonyWeight}`)
         }
