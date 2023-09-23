@@ -14,13 +14,7 @@ exports.GreedyMonkey = (InputMap) => {
     return recursiveGreedyMonkey(allFruits, noOfWeightMonkeyCarry, basketVolume);
 }
 
-const iterativeGreedyMonkey = (allFruits, noOfRemainingWeightMonkeyCarry, noOfRemainingBasketVolume) => {
-    const stack = [];
-    let result = 0;
-    let index = 0;
-  
-    
-  };
+
 
 const recursiveGreedyMonkey = (allFruits, noOfRemainingWeightMonkeyCarry, noOfRemainingBasketVolume) =>{
     if(allFruits.length <= 1){
