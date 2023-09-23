@@ -31,11 +31,11 @@ const recursiveGreedyMonkey = (allFruits, noOfRemainingWeightMonkeyCarry, noOfRe
     const lastFruit = allFruits.pop();
     
     if(lastFruit[0] > noOfRemainingWeightMonkeyCarry || lastFruit[1] > noOfRemainingBasketVolume){
-        return dp[allFruits.length][noOfRemainingWeightMonkeyCarry][noOfRemainingBasketVolume] = recursiveGreedyMonkey(allFruits, noOfRemainingWeightMonkeyCarry, noOfRemainingBasketVolume);
+        return dp[allFruits.length][noOfRemainingWeightMonkeyCarry][noOfRemainingBasketVolume] = recursiveGreedyMonkey(allFruits, noOfRemainingWeightMonkeyCarry, noOfRemainingBasketVolume, dp);
     }
     
-    const scoreForAddingFruitToBasket = recursiveGreedyMonkey(allFruits, noOfRemainingWeightMonkeyCarry-lastFruit[0], noOfRemainingBasketVolume-lastFruit[1]) + lastFruit[2];
-    const scoreForNotAddingFruitToBasket = recursiveGreedyMonkey(allFruits, noOfRemainingWeightMonkeyCarry, noOfRemainingBasketVolume);
+    const scoreForAddingFruitToBasket = recursiveGreedyMonkey(allFruits, noOfRemainingWeightMonkeyCarry-lastFruit[0], noOfRemainingBasketVolume-lastFruit[1], dp) + lastFruit[2];
+    const scoreForNotAddingFruitToBasket = recursiveGreedyMonkey(allFruits, noOfRemainingWeightMonkeyCarry, noOfRemainingBasketVolume, dp);
     
     return dp[allFruits.length][noOfRemainingWeightMonkeyCarry][noOfRemainingBasketVolume] = Math.max(scoreForAddingFruitToBasket, scoreForNotAddingFruitToBasket);
 
