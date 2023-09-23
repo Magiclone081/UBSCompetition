@@ -31,7 +31,7 @@ const recursiveGreedyMonkey = (allFruits, noOfRemainingWeightMonkeyCarry, noOfRe
     const lastFruit = allFruits.pop();
     
     if(lastFruit[0] > noOfRemainingWeightMonkeyCarry || lastFruit[1] > noOfRemainingBasketVolume){
-        return recursiveGreedyMonkey(allFruits, noOfRemainingWeightMonkeyCarry, noOfRemainingBasketVolume, dp);
+        return recursiveGreedyMonkey(allFruits, noOfRemainingWeightMonkeyCarry, noOfRemainingBasketVolume);
     }
     
     const scoreForAddingFruitToBasket = recursiveGreedyMonkey(allFruits, noOfRemainingWeightMonkeyCarry-lastFruit[0], noOfRemainingBasketVolume-lastFruit[1]) + lastFruit[2];
