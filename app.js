@@ -8,15 +8,28 @@ const app = express().use(express.json());
 morganBody(app, { noColors: process.env.NODE_ENV === 'production' });
 
 app.get('/', (req, res) => {
-  const inputMap = {
+  const inputStr = {
     "w": 100,
     "v": 150,
     "f": [
-      [60, 70, 60],
-      [30, 80, 40],
-      [35, 70, 70]
+            [
+                    60,
+                    70,
+                    60
+            ],
+            [
+                    30,
+                    80,
+                    40
+            ],
+            [
+                    35,
+                    70,
+                    70
+            ]
     ]
-  };
+}
+  const inputMap = inputStr;
 
   const inputMap2 ={
     "w": 100,
@@ -34,8 +47,8 @@ app.get('/', (req, res) => {
 
 app
   .post("/greedyMonkey", (req, res) => {
-    const jsonMap = JSON.stringify(req.body);
-    
+    //const jsonMap = JSON.stringify(req.body);
+    const jsonMap = req.body;
     const output = GreedyMonkey(jsonMap);
     
     console.log(output);
