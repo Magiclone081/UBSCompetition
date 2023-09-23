@@ -63,7 +63,7 @@ app
 app
   .post("/digital-colony", (req, res) => {
     const reqBody = req.body;
-    console.log(reqBody);
+    //console.log(reqBody);
     const output = DigitalColony(reqBody);
 
     console.log(output);
