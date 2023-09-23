@@ -215,6 +215,41 @@ exports.ParkingLot = (parkingLotInfoMap) => {
         }
     }
 
+    if (parkingCharges['Bus'] < parkingCharges['Car'] * 2 + parkingCharges['Bike'] * 2 && vehiclesRemaining['Car'] >= 2 && vehiclesRemaining['Bike'] >= 2) {
+        for (;busParkingSlotsUser['Bus']>0 && vehiclesRemaining['Car'] >= 2 && vehiclesRemaining['Bike'] >= 2 ;busParkingSlotsUser['Bus']--) {
+            vehiclesRemaining['Bus'] += 1;
+            vehiclesRemaining['Car'] -= 2;
+            busParkingSlotsUser['Car'] += 2;
+            vehiclesRemaining['Bike'] -= 2;
+            busParkingSlotsUser['Bike'] += 2;
+        }
+    }
+
+    if (parkingCharges['Bus'] < parkingCharges['Car'] * 2 + parkingCharges['Bike'] && vehiclesRemaining['Car'] >= 2 && vehiclesRemaining['Bike'] >= 1) {
+        vehiclesRemaining['Bus'] += 1;
+        busParkingSlotsUser['Bus'] -= 1;
+        vehiclesRemaining['Car'] -= 2;
+        busParkingSlotsUser['Car'] += 2;
+        vehiclesRemaining['Bike'] -= 1;
+        busParkingSlotsUser['Bike'] += 1;
+    }
+
+    if (parkingCharges['Bus'] < parkingCharges['Car'] * 2 && vehiclesRemaining['Car'] >= 2) {
+        for (; busParkingSlotsUser['Bus'] > 0 && vehiclesRemaining['Car'] >= 2; busParkingSlotsUser['Bus']--) {
+            vehiclesRemaining['Bus'] += 1;
+            vehiclesRemaining['Car'] -= 2;
+            busParkingSlotsUser['Car'] += 2;
+        }
+    }
+
+    if (parkingCharges['Bus'] < parkingCharges['Car'] && vehiclesRemaining['Car'] >= 1) {
+        for (; busParkingSlotsUser['Bus'] > 0 && vehiclesRemaining['Car'] >= 1; busParkingSlotsUser['Bus']--) {
+            vehiclesRemaining['Bus'] += 1;
+            vehiclesRemaining['Car'] -= 1;
+            busParkingSlotsUser['Car'] += 1;
+        }
+    }
+
 
     console.log(`${carParkingSlotsUser['Bus']} ${busParkingSlotsUser['Bus']} ${carParkingSlotsUser['Car']} ${busParkingSlotsUser['Car']} ${carParkingSlotsUser['Bike']} ${busParkingSlotsUser['Bike']}`);
     return {
