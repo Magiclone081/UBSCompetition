@@ -113,7 +113,7 @@ app
 
 
   app
-  .post("/lazy-developer", (req, res) => {
+  .post("/pie-chart", (req, res) => {
     const jsonMap = req.body;
 
     const output = PieChart(jsonMap);
