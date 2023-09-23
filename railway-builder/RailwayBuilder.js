@@ -7,7 +7,7 @@ exports.RailwayBuilder = (railwayRequest) => {
         const currentRequest = railwayRequest[i].split(', ');
         const lengthOfRailWay = currentRequest.shift();
         currentRequest.shift();
-        let dp = Array(currentRequest.length).fill().map(() => Array(lengthOfRailWay).fill(-1));
+        let dp = Array(currentRequest.length+1).fill().map(() => Array(lengthOfRailWay+1).fill(-1));
         returnArray.push(recursiveRailwayBuildingWay(lengthOfRailWay, currentRequest, dp));
     }
     // while(i < railwayRequest.length){
