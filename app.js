@@ -3,6 +3,7 @@ const morganBody = require('morgan-body');
 const { LazyDeveloper } = require('./lazy-developer/LazyDeveloper');
 const { GreedyMonkey } = require('./greedy-monkey/GreedyMonkey');
 const { DigitalColony } = require('./digital-colony/DigitalColony');
+const { RailwayBuilder } = require('./railway-builder/RailwayBuilder');
 const PORT = process.env.PORT || 5000;
 
 
@@ -33,13 +34,20 @@ app.get('/', (req, res) => {
   }
   const inputMap = inputStr;
 
-  const inputMap2 = [
+  const digitalColony = [
     { generations: 2, colony: '7750' },
     // { generations: 10, colony: '7750' },
     // { generations: 50, colony: '6221' }
   ];
   
-  const output = DigitalColony(inputMap2);
+  
+  //const output = DigitalColony(digitalColony);
+
+  const railwayBulder = [
+    "5, 3, 2, 1, 4",
+    "3, 3, 4, 1, 2",
+    "11, 1, 2"
+  ]
   //const output = GreedyMonkey(inputMap);
   //const output = LazyDeveloper(jsonMap);
   console.log(output);
@@ -62,6 +70,17 @@ app
     const reqBody = req.body;
     console.log(reqBody);
     const output = DigitalColony(reqBody);
+
+    console.log(output);
+    //res.send(JSON.stringify(output));
+    res.send(output);
+  })
+
+  app
+  .post("/railway-builder", (req, res) => {
+    const reqBody = req.body;
+    console.log(reqBody);
+    const output = RailwayBuilder(reqBody);
 
     console.log(output);
     //res.send(JSON.stringify(output));
