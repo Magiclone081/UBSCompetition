@@ -23,9 +23,10 @@ exports.DigitalColony = (generationRequest) => {
             //console.log(`entire colony${newColony}`)
             colonyWeight = colony.reduce((currSum, i) => currSum + i, 0);
            // console.log(`${colonyWeight}`)
+           
         }
         returnArray.push(colonyWeight.toString());
-
+        break;
         
     }
     
