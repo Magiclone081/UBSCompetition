@@ -63,7 +63,7 @@ function knapsackTwoConstraints(items, maxWeight, maxVolume) {
       return memo[itemIndex][remainingWeight][remainingVolume];
     }
   
-    const maxValue = knapsackHelper(n, maxWeight, maxVolume);
+    let maxValue = knapsackHelper(n, maxWeight, maxVolume);
   
     // Trace back to find the selected items
     let selectedItems = [];
