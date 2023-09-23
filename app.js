@@ -48,7 +48,7 @@ app.get('/', (req, res) => {
 
 app
   .post("/greedyMonkey", (req, res) => {
-    const jsonMap = JSON.stringify(req.body);
+    const jsonMap = JSON.stringify(req.text);
     //const jsonMap = req.body;
     console.log(jsonMap);
     const output = GreedyMonkey(jsonMap);
