@@ -4,8 +4,8 @@ const { LazyDeveloper } = require('./lazy-developer/LazyDeveloper');
 const { GreedyMonkey } = require('./greedy-monkey/GreedyMonkey');
 const PORT = process.env.PORT || 5000;
 
-//express.json()
-const app = express().use(express.text());
+
+const app = express().use(express.json());
 morganBody(app, { noColors: process.env.NODE_ENV === 'production' });
 
 app.get('/', (req, res) => {
@@ -57,7 +57,7 @@ app
     
     console.log(output);
     //res.send(JSON.stringify(output));
-    
+    res.set('Content-Type', 'text/plain');
     res.send(output);
   })
 
