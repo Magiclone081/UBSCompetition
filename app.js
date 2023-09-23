@@ -5,6 +5,7 @@ const { GreedyMonkey } = require('./greedy-monkey/GreedyMonkey');
 const { DigitalColony } = require('./digital-colony/DigitalColony');
 const { RailwayBuilder } = require('./railway-builder/RailwayBuilder');
 const { ParkingLot } = require('./parking-lot/ParkingLot');
+const { PieChart } = require('./pie-chart/PieChart');
 const PORT = process.env.PORT || 5000;
 
 
@@ -104,6 +105,18 @@ app
     console.log(reqBody);
     const output = ParkingLot(reqBody);
 
+    console.log(output);
+    //res.send(JSON.stringify(output));
+    res.send(output);
+  })
+
+
+
+  app
+  .post("/lazy-developer", (req, res) => {
+    const jsonMap = req.body;
+
+    const output = PieChart(jsonMap);
     console.log(output);
     //res.send(JSON.stringify(output));
     res.send(output);
