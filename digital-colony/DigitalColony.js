@@ -8,6 +8,7 @@ exports.DigitalColony = (generationRequest) => {
         let colony = request['colony'].split('').flatMap(value => parseInt(value));
         //console.log(JSON.stringify(colony));
         let colonyWeight = colony.reduce((currSum, i) => currSum + i, 0);
+        let colonyWeightFirstDigit = colonyWeight % 10;
         console.log(`current iteration: ${0} ${colony} ${colonyWeight}`);
         for(let currentGeneration = 0; currentGeneration < totalGeneration; currentGeneration++){
             

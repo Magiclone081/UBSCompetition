@@ -11,39 +11,39 @@ const app = express().use(express.json());
 morganBody(app, { noColors: process.env.NODE_ENV === 'production' });
 
 app.get('/', (req, res) => {
-  const inputStr = {
-        w: 863,
-        v: 843,
-        f: [
-          [ 835, 448, 38 ],
-          [ 430, 1001, 94 ],
-          [ 248, 68, 46 ],
-          [ 838, 889, 91 ],
-          [ 654, 169, 72 ],
-          [ 696, 165, 32 ],
-          [ 607, 272, 96 ],
-          [ 343, 792, 52 ],
-          [ 938, 605, 5 ],
-          [ 879, 717, 23 ]
-        ]
-      }
-  const inputMap = inputStr;
+  // const inputStr = {
+  //       w: 863,
+  //       v: 843,
+  //       f: [
+  //         [ 835, 448, 38 ],
+  //         [ 430, 1001, 94 ],
+  //         [ 248, 68, 46 ],
+  //         [ 838, 889, 91 ],
+  //         [ 654, 169, 72 ],
+  //         [ 696, 165, 32 ],
+  //         [ 607, 272, 96 ],
+  //         [ 343, 792, 52 ],
+  //         [ 938, 605, 5 ],
+  //         [ 879, 717, 23 ]
+  //       ]
+  //     }
+  // const inputMap = inputStr;
 
-  // const digitalColony = [
-  //   { generations: 3, colony: '4149' },
-  //   // { generations: 10, colony: '7750' },
-  //   // { generations: 50, colony: '6221' }
-  // ];
+  const digitalColony = [
+    { generations: 10, colony: '5592' },
+    // { generations: 10, colony: '7750' },
+    // { generations: 50, colony: '6221' }
+  ];
   
   
-  // const output = DigitalColony(digitalColony);
+  const output = DigitalColony(digitalColony);
 
   // const railwayBulder = [
   //   "5, 3, 2, 1, 4",
   //   "3, 3, 4, 1, 2",
   //   "11, 1, 2"
   // ]
-  const output = GreedyMonkey(inputMap);
+  // const output = GreedyMonkey(inputMap);
   //const output = LazyDeveloper(jsonMap);
   console.log(output);
 })

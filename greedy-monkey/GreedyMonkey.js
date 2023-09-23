@@ -12,80 +12,9 @@ exports.GreedyMonkey = (InputMap) => {
     
     //let dp = new Array(allFruits.length+1).fill().map(() => new Array(noOfWeightMonkeyCarry).fill().map(() => new Array(basketVolume)));
     //let dp = Array.from({ length: allFruits.length+1 }, () =>Array.from({ length: noOfWeightMonkeyCarry+1 }, () =>Array.from({ length: basketVolume+1 }, () => -1)));
-    return knapsackTwoConstraints(allFruits, noOfWeightMonkeyCarry, basketVolume);
+    
     return recursiveGreedyMonkey(allFruits, noOfWeightMonkeyCarry, basketVolume)[0];
 }
-
-function knapsackTwoConstraints(items, maxWeight, maxVolume) {
-    const n = items.length;
-  
-    // Create a memoization table to store the results of subproblems
-    let memo = Array.from({ length: n + 1 }, () =>
-      Array.from({ length: maxWeight + 1 }, () =>
-        Array.from({ length: maxVolume + 1 }, () => -1)
-      )
-    );
-  
-    function knapsackHelper(itemIndex, remainingWeight, remainingVolume) {
-      if (itemIndex === 0 || remainingWeight === 0 || remainingVolume === 0) {
-        return 0;
-      }
-  
-      if (memo[itemIndex][remainingWeight][remainingVolume] !== -1) {
-        return memo[itemIndex][remainingWeight][remainingVolume];
-      }
-  
-      const [weight, volume, value] = items[itemIndex - 1];
-  
-      if (weight > remainingWeight || volume > remainingVolume) {
-        memo[itemIndex][remainingWeight][remainingVolume] =
-          knapsackHelper(itemIndex - 1, remainingWeight, remainingVolume);
-      } else {
-        const valueWithItem =
-          value +
-          knapsackHelper(
-            itemIndex - 1,
-            remainingWeight - weight,
-            remainingVolume - volume
-          );
-        const valueWithoutItem = knapsackHelper(
-          itemIndex - 1,
-          remainingWeight,
-          remainingVolume
-        );
-  
-        memo[itemIndex][remainingWeight][remainingVolume] = Math.max(
-          valueWithItem,
-          valueWithoutItem
-        );
-      }
-  
-      return memo[itemIndex][remainingWeight][remainingVolume];
-    }
-  
-    let maxValue = knapsackHelper(n, maxWeight, maxVolume);
-  
-    // Trace back to find the selected items
-    let selectedItems = [];
-    let w = maxWeight;
-    let v = maxVolume;
-    for (let i = n; i >= 1 && maxValue > 0; i--) {
-      if (
-        maxValue === memo[i - 1][w][v] ||
-        (items[i - 1][0] > w || items[i - 1][1] > v)
-      ) {
-        continue;
-      }
-  
-      const [weight, volume] = items[i - 1];
-      selectedItems.push(items[i - 1]);
-      maxValue -= items[i - 1][2];
-      w -= weight;
-      v -= volume;
-    }
-  
-    return maxValue;
-  }
 
 
 
