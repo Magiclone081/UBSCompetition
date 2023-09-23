@@ -37,6 +37,6 @@ const recursiveGreedyMonkey = (allFruits, noOfRemainingWeightMonkeyCarry, noOfRe
     const scoreForAddingFruitToBasket = recursiveGreedyMonkey(allFruits, noOfRemainingWeightMonkeyCarry-lastFruit[0], noOfRemainingBasketVolume-lastFruit[1]) + lastFruit[2];
     const scoreForNotAddingFruitToBasket = recursiveGreedyMonkey(allFruits, noOfRemainingWeightMonkeyCarry, noOfRemainingBasketVolume);
     
-    return dp[allFruits.length][noOfRemainingWeightMonkeyCarry][noOfRemainingBasketVolume] = Math.max(scoreForAddingFruitToBasket, scoreForNotAddingFruitToBasket);
+    return Math.max(scoreForAddingFruitToBasket, scoreForNotAddingFruitToBasket);
 
 }
