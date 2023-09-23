@@ -12,7 +12,7 @@ exports.GreedyMonkey = (InputMap) => {
     
 
 
-    return iterativeGreedyMonkey(allFruits, noOfWeightMonkeyCarry, basketVolume);
+    return recursiveGreedyMonkey(allFruits, noOfWeightMonkeyCarry, basketVolume);
 }
 
 const iterativeGreedyMonkey = (allFruits, noOfRemainingWeightMonkeyCarry, noOfRemainingBasketVolume) => {
