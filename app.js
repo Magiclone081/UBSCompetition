@@ -50,7 +50,7 @@ app.get('/', (req, res) => {
   ]
   //const output = GreedyMonkey(inputMap);
   //const output = LazyDeveloper(jsonMap);
-  console.log(output);
+  //console.log(output);
 })
 
 app
