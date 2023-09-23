@@ -224,7 +224,7 @@ exports.ParkingLot = (parkingLotInfoMap) => {
             }
         }
         i++;
-    } while (lastVehiclesBusRemaining == vehiclesRemaining['Bus'] && lastVehiclesCarRemaining == vehiclesRemaining['Car'] && lastVehiclesBikeRemaining == vehiclesRemaining['Bike'] || i >=3);
+    } while (lastVehiclesBusRemaining == vehiclesRemaining['Bus'] && lastVehiclesCarRemaining == vehiclesRemaining['Car'] && lastVehiclesBikeRemaining == vehiclesRemaining['Bike'] || i >1);
     
 
 
