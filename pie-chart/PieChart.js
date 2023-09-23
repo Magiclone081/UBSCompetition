@@ -69,7 +69,7 @@ const splitChordDiagramCreator = (datum) => {
             sumOfAllAdjusted += val / base * instrumentPieChartBase;
             noOfAdjustedSmall++;
         }
-        instrumentReturn.push(Math.round((instrumentReturn[instrumentReturn.length - 1] + rad) * 100000000) / 100000000);
+        instrumentReturn.push(instrumentReturn[instrumentReturn.length - 1] + rad);
     }
 
     const otherBase = (instrumentPieChartBase - 3 * pi / 1000) / 4;
@@ -102,7 +102,7 @@ const splitChordDiagramCreator = (datum) => {
 
     for (let i = allRad.length - 1; i >= 0; i--) {
         console.log(allRad[i]);
-        currencyReturn.push(Math.round((currencyReturn[currencyReturn.length - 1] + allRad[i]) * 100000000) / 100000000);
+        currencyReturn.push(currencyReturn[currencyReturn.length - 1] + allRad[i]);
     }
 
     noOfAdjustedSmall = 0;
@@ -134,7 +134,7 @@ const splitChordDiagramCreator = (datum) => {
 
     for (let i = allRad.length - 1; i >= 0; i--) {
         console.log(allRad[i]);
-        sectorReturn.push(Math.round((sectorReturn[sectorReturn.length - 1] + allRad[i]) * 100000000) / 100000000);
+        sectorReturn.push(sectorReturn[sectorReturn.length - 1] + allRad[i]);
     }
 
     noOfAdjustedSmall = 0;
@@ -166,7 +166,7 @@ const splitChordDiagramCreator = (datum) => {
 
     for (let i = allRad.length - 1; i >= 0; i--) {
         console.log(allRad[i]);
-        assetClassReturn.push(Math.round((assetClassReturn[assetClassReturn.length - 1] + allRad[i]) * 100000000) / 100000000);
+        assetClassReturn.push(assetClassReturn[assetClassReturn.length - 1] + allRad[i]);
     }
 
     noOfAdjustedSmall = 0;
@@ -198,7 +198,7 @@ const splitChordDiagramCreator = (datum) => {
 
     for (let i = allRad.length - 1; i >= 0; i--) {
         console.log(allRad[i]);
-        regionReturn.push(Math.round((regionReturn[regionReturn.length - 1] + allRad[i]) * 100000000) / 100000000);
+        regionReturn.push(regionReturn[regionReturn.length - 1] + allRad[i]);
     }
 
     return {
