@@ -35,7 +35,7 @@ app.get('/', (req, res) => {
   const inputMap = inputStr;
 
   const digitalColony = [
-    { generations: 2, colony: '4148' },
+    { generations: 3, colony: '4149' },
     // { generations: 10, colony: '7750' },
     // { generations: 50, colony: '6221' }
   ];
