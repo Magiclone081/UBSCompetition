@@ -8,8 +8,8 @@ exports.GreedyMonkey = (InputMap) => {
     // let volumeUsed = 0;
     // let currentScore = 0;
     
-    let dp = new Array(allFruits.length+1).fill().map(() => new Array(noOfWeightMonkeyCarry).fill().map(() => new Array(basketVolume)));
-
+    //let dp = new Array(allFruits.length+1).fill().map(() => new Array(noOfWeightMonkeyCarry).fill().map(() => new Array(basketVolume)));
+    let dp = Array.from({ length: sizeX }, () =>Array.from({ length: sizeY }, () =>Array.from({ length: sizeZ }, () => -1)));
 
     return recursiveGreedyMonkey(allFruits, noOfWeightMonkeyCarry, basketVolume, dp);
 }
@@ -24,7 +24,7 @@ const recursiveGreedyMonkey = (allFruits, noOfRemainingWeightMonkeyCarry, noOfRe
         return 0;
     }
 
-    if(dp[allFruits.length][noOfRemainingWeightMonkeyCarry][noOfRemainingBasketVolume] != undefined){
+    if(dp[allFruits.length][noOfRemainingWeightMonkeyCarry][noOfRemainingBasketVolume] != undefined || dp[allFruits.length][noOfRemainingWeightMonkeyCarry][noOfRemainingBasketVolume] != -1){
         return dp[allFruits.length][noOfRemainingWeightMonkeyCarry][noOfRemainingBasketVolume];
     }
 
