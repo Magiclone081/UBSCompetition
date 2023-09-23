@@ -4,6 +4,7 @@ const { LazyDeveloper } = require('./lazy-developer/LazyDeveloper');
 const { GreedyMonkey } = require('./greedy-monkey/GreedyMonkey');
 const { DigitalColony } = require('./digital-colony/DigitalColony');
 const { RailwayBuilder } = require('./railway-builder/RailwayBuilder');
+const { ParkingLot } = require('./parking-lot/ParkingLot');
 const PORT = process.env.PORT || 5000;
 
 
@@ -34,9 +35,9 @@ app.get('/', (req, res) => {
     // { generations: 10, colony: '7750' },
     // { generations: 50, colony: '6221' }
   ];
-  
-  
-  const output = DigitalColony(digitalColony);
+
+
+  //const output = DigitalColony(digitalColony);
 
   // const railwayBulder = [
   //   "5, 3, 2, 1, 4",
@@ -45,6 +46,19 @@ app.get('/', (req, res) => {
   // ]
   // const output = GreedyMonkey(inputMap);
   //const output = LazyDeveloper(jsonMap);
+  const parkingLotInfo = {
+    "BusParkingSlots": 1,
+    "CarParkingSlots": 0,
+    "ParkingCharges": {
+      "Bus": 300,
+      "Car": 140,
+      "Bike": 30
+    },
+    "Buses": 3,
+    "Cars": 2,
+    "Bikes": 7
+  };
+  const output = ParkingLot(parkingLotInfo);
   console.log(output);
 })
 
@@ -72,11 +86,22 @@ app
     res.send(output);
   })
 
-  app
+app
   .post("/railway-builder", (req, res) => {
     const reqBody = req.body;
     console.log(reqBody);
     const output = RailwayBuilder(reqBody);
+
+    console.log(output);
+    //res.send(JSON.stringify(output));
+    res.send(output);
+  })
+
+app
+  .post("/parking-lot", (req, res) => {
+    const reqBody = req.body;
+    console.log(reqBody);
+    const output = ParkingLot(reqBody);
 
     console.log(output);
     //res.send(JSON.stringify(output));
