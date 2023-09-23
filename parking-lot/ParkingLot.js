@@ -203,66 +203,57 @@ exports.ParkingLot = (parkingLotInfoMap) => {
         vehiclesRemaining['Bike'] -= numberOfCarSlotBikesFilled * 5;
     }
 
-    let lastVehiclesBusRemaining;
-    let lastVehiclesCarRemaining;
-    let lastVehiclesBikeRemaining;
-    let i = 0;
-    do {
-        lastVehiclesBusRemaining = vehiclesRemaining['Bus'];
-        lastVehiclesCarRemaining = vehiclesRemaining['Car'];
-        lastVehiclesBikeRemaining = vehiclesRemaining['Bike'];
 
-        if (parkingCharges['Bus'] < parkingCharges['Car'] * 2 + parkingCharges['Bike'] * 2 && vehiclesRemaining['Car'] >= 2 && vehiclesRemaining['Bike'] >= 2) {
-            for (; busParkingSlotsUser['Bus'] > 0 && vehiclesRemaining['Car'] >= 2 && vehiclesRemaining['Bike'] >= 2; busParkingSlotsUser['Bus']--) {
-                vehiclesRemaining['Bus'] += 1;
-                vehiclesRemaining['Car'] -= 2;
-                busParkingSlotsUser['Car'] += 2;
-                vehiclesRemaining['Bike'] -= 2;
-                busParkingSlotsUser['Bike'] += 2;
-            }
-        }
-
-        if (parkingCharges['Bus'] < parkingCharges['Car'] * 2 + parkingCharges['Bike'] && vehiclesRemaining['Car'] >= 2 && vehiclesRemaining['Bike'] >= 1) {
+    if (parkingCharges['Bus'] < parkingCharges['Car'] * 2 + parkingCharges['Bike'] * 2 && vehiclesRemaining['Car'] >= 2 && vehiclesRemaining['Bike'] >= 2) {
+        for (; busParkingSlotsUser['Bus'] > 0 && vehiclesRemaining['Car'] >= 2 && vehiclesRemaining['Bike'] >= 2; busParkingSlotsUser['Bus']--) {
             vehiclesRemaining['Bus'] += 1;
-            busParkingSlotsUser['Bus'] -= 1;
             vehiclesRemaining['Car'] -= 2;
             busParkingSlotsUser['Car'] += 2;
-            vehiclesRemaining['Bike'] -= 1;
-            busParkingSlotsUser['Bike'] += 1;
+            vehiclesRemaining['Bike'] -= 2;
+            busParkingSlotsUser['Bike'] += 2;
         }
+    }
 
-        if (parkingCharges['Bus'] < parkingCharges['Car'] * 2 && vehiclesRemaining['Car'] >= 2) {
-            for (; busParkingSlotsUser['Bus'] > 0 && vehiclesRemaining['Car'] >= 2; busParkingSlotsUser['Bus']--) {
-                vehiclesRemaining['Bus'] += 1;
-                vehiclesRemaining['Car'] -= 2;
-                busParkingSlotsUser['Car'] += 2;
+    if (parkingCharges['Bus'] < parkingCharges['Car'] * 2 + parkingCharges['Bike'] && vehiclesRemaining['Car'] >= 2 && vehiclesRemaining['Bike'] >= 1) {
+        vehiclesRemaining['Bus'] += 1;
+        busParkingSlotsUser['Bus'] -= 1;
+        vehiclesRemaining['Car'] -= 2;
+        busParkingSlotsUser['Car'] += 2;
+        vehiclesRemaining['Bike'] -= 1;
+        busParkingSlotsUser['Bike'] += 1;
+    }
+
+    if (parkingCharges['Bus'] < parkingCharges['Car'] * 2 && vehiclesRemaining['Car'] >= 2) {
+        for (; busParkingSlotsUser['Bus'] > 0 && vehiclesRemaining['Car'] >= 2; busParkingSlotsUser['Bus']--) {
+            vehiclesRemaining['Bus'] += 1;
+            vehiclesRemaining['Car'] -= 2;
+            busParkingSlotsUser['Car'] += 2;
+        }
+    }
+
+    if (parkingCharges['Bus'] < parkingCharges['Car'] && vehiclesRemaining['Car'] >= 1) {
+        for (; busParkingSlotsUser['Bus'] > 0 && vehiclesRemaining['Car'] >= 1; busParkingSlotsUser['Bus']--) {
+            vehiclesRemaining['Bus'] += 1;
+            vehiclesRemaining['Car'] -= 1;
+            busParkingSlotsUser['Car'] += 1;
+        }
+    }
+    for (let i = 5; i > 0; i--) {
+        if (parkingCharges['Car'] < parkingCharges['Bike'] * i) {
+            for (; busParkingSlotsUser['Car'] > 0 && vehiclesRemaining['Bike'] >= i; busParkingSlotsUser['Car']--) {
+                vehiclesRemaining['Car'] += 1;
+                vehiclesRemaining['Bike'] -= i;
+                busParkingSlotsUser['Bike'] += i;
+            }
+
+            for (; carParkingSlotsUser['Car'] > 0 && vehiclesRemaining['Bike'] >= i; carParkingSlotsUser['Car']--) {
+                vehiclesRemaining['Car'] += 1;
+                vehiclesRemaining['Bike'] -= i;
+                carParkingSlotsUser['Bike'] += i;
             }
         }
+    }
 
-        if (parkingCharges['Bus'] < parkingCharges['Car'] && vehiclesRemaining['Car'] >= 1) {
-            for (; busParkingSlotsUser['Bus'] > 0 && vehiclesRemaining['Car'] >= 1; busParkingSlotsUser['Bus']--) {
-                vehiclesRemaining['Bus'] += 1;
-                vehiclesRemaining['Car'] -= 1;
-                busParkingSlotsUser['Car'] += 1;
-            }
-        }
-        for (let i = 5; i > 0; i--) {
-            if (parkingCharges['Car'] < parkingCharges['Bike'] * i) {
-                for (; busParkingSlotsUser['Car'] > 0 && vehiclesRemaining['Bike'] >= i; busParkingSlotsUser['Car']--) {
-                    vehiclesRemaining['Car'] += 1;
-                    vehiclesRemaining['Bike'] -= i;
-                    busParkingSlotsUser['Bike'] += i;
-                }
-
-                for (; carParkingSlotsUser['Car'] > 0 && vehiclesRemaining['Bike'] >= i; carParkingSlotsUser['Car']--) {
-                    vehiclesRemaining['Car'] += 1;
-                    vehiclesRemaining['Bike'] -= i;
-                    carParkingSlotsUser['Bike'] += i;
-                }
-            }
-        }
-        i++;
-    } while (lastVehiclesBusRemaining == vehiclesRemaining['Bus'] && lastVehiclesCarRemaining == vehiclesRemaining['Car'] && lastVehiclesBikeRemaining == vehiclesRemaining['Bike'] || i > 1);
 
 
 
