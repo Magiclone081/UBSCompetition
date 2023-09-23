@@ -20,7 +20,7 @@ function knapsackTwoConstraints(items, maxWeight, maxVolume) {
     const n = items.length;
   
     // Create a memoization table to store the results of subproblems
-    const memo = Array.from({ length: n + 1 }, () =>
+    let memo = Array.from({ length: n + 1 }, () =>
       Array.from({ length: maxWeight + 1 }, () =>
         Array.from({ length: maxVolume + 1 }, () => -1)
       )
@@ -66,7 +66,7 @@ function knapsackTwoConstraints(items, maxWeight, maxVolume) {
     const maxValue = knapsackHelper(n, maxWeight, maxVolume);
   
     // Trace back to find the selected items
-    const selectedItems = [];
+    let selectedItems = [];
     let w = maxWeight;
     let v = maxVolume;
     for (let i = n; i >= 1 && maxValue > 0; i--) {
