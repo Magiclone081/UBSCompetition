@@ -8,20 +8,23 @@ exports.DigitalColony = (generationRequest) => {
         let colony = request['colony'].split('').flatMap(value => parseInt(value));
         //console.log(JSON.stringify(colony));
         let colonyWeight = colony.reduce((currSum, i) => currSum + i, 0);
+        
         for(let currentGeneration = 0; currentGeneration < totalGeneration; currentGeneration++){
             console.log(`current iteration: ${currentGeneration}`);
             
-            
+            let currentSum = 0;
             
             for(let i = colony.length-1; i > 0; i--){
                 
-                const signature = colony[i-1] - colony[i] < 0 ? 10-(colony[i-1] - colony[i]) : colony[i-1] - colony[i];
-                colony.splice(i, 0, (colonyWeight + signature)%10)
+                const signature = colony[i-1] - colony[i];
+                const newPpl = (colonyWeight + signature)%10;
+                currentSum +=newPpl;
+                colony.splice(i, 0, newPpl);
                 
             }
             //console.log(`new colony${colonyWeight}`)
             //console.log(`entire colony${newColony}`)
-            colonyWeight = colony.reduce((currSum, i) => currSum + i, 0);
+            colonyWeight += currentSum;
            // console.log(`${colonyWeight}`)
            
         }
