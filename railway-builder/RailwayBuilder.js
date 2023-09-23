@@ -50,5 +50,5 @@ const recursiveRailwayBuildingWay = (remainingRailwayLength, trackChoice, dp) =>
     }
 
     return dp[trackChoice.length][remainingRailwayLength] = recursiveRailwayBuildingWay(remainingRailwayLength - trackChoice[trackChoice.length - 1], trackChoice, dp)
-        + recursiveRailwayBuildingWay(remainingRailwayLength, trackChoice, dp);
+        + recursiveRailwayBuildingWay(remainingRailwayLength, trackChoice.pop(), dp);
 }
