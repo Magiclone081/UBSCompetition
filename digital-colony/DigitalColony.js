@@ -9,7 +9,7 @@ exports.DigitalColony = (generationRequest) => {
         //console.log(JSON.stringify(colony));
         let colonyWeight = colony.reduce((currSum, i) => currSum + i, 0);
         
-        for(let currentGeneration = 0; currentGeneration < totalGeneration; currentGeneration++){
+        for(let currentGeneration = 1; currentGeneration < totalGeneration; currentGeneration++){
             console.log(`current iteration: ${currentGeneration}`);
             
             let currentSum = 0;

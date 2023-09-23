@@ -35,13 +35,13 @@ app.get('/', (req, res) => {
   const inputMap = inputStr;
 
   const digitalColony = [
-    { generations: 2, colony: '7750' },
+    { generations: 2, colony: '4148' },
     // { generations: 10, colony: '7750' },
     // { generations: 50, colony: '6221' }
   ];
   
   
-  //const output = DigitalColony(digitalColony);
+  const output = DigitalColony(digitalColony);
 
   const railwayBulder = [
     "5, 3, 2, 1, 4",
@@ -50,7 +50,7 @@ app.get('/', (req, res) => {
   ]
   //const output = GreedyMonkey(inputMap);
   //const output = LazyDeveloper(jsonMap);
-  //console.log(output);
+  console.log(output);
 })
 
 app
