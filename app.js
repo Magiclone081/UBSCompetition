@@ -99,6 +99,7 @@ app
 
 app
   .post("/parking-lot", (req, res) => {
+    console.log("/parking-lot");
     const reqBody = req.body;
     console.log(reqBody);
     const output = ParkingLot(reqBody);
