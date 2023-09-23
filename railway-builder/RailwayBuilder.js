@@ -7,7 +7,7 @@ exports.RailwayBuilder = (railwayRequest) => {
         const currentRequest = railwayRequest[i].split(', ');
         const lengthOfRailWay = currentRequest.shift();
         currentRequest.shift();
-        let dp = Array(currentRequest.length+1).fill().map(() => Array(lengthOfRailWay+1).fill(-1));
+        let dp = [];
         returnArray.push(recursiveRailwayBuildingWay(lengthOfRailWay, currentRequest, dp));
     }
     // while(i < railwayRequest.length){
@@ -45,7 +45,7 @@ const recursiveRailwayBuildingWay = (remainingRailwayLength, trackChoice, dp) =>
         return 0;
     }
         
-    if(dp[trackChoice.length][remainingRailwayLength] != -1){
+    if(dp[trackChoice.length][remainingRailwayLength] != undefined){
         return dp[trackChoice.length][remainingRailwayLength];
     }
 
