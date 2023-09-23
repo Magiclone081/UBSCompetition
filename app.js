@@ -55,7 +55,7 @@ app
     console.log(output);
     //res.send(JSON.stringify(output));
     res.set('Content-Type', 'text/plain');
-    res.send(output);
+    res.send(output.toString());
   })
 
 app

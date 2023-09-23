@@ -12,8 +12,14 @@ exports.DigitalColony = (generationRequest) => {
             const colonyWeight = colony.reduce((currSum, i) => currSum + i, 0);
             for(let i = 0; i < colony.length-1; i++){
                 newColony.push(colony[i]);
+                const signature = Math.abs(colony[i] - colony[i+1]);
+                newColony.push((colonyWeight + signature)%10);
+
             }
+            newColony.push(colony[colony.length-1]);
+            colony = newColony;
         }
+        
         
     }
     
