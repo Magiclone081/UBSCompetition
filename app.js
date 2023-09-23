@@ -53,7 +53,7 @@ app
     const jsonMap = JSON.stringify(body123);
     //const jsonMap = req.body;
     console.log(jsonMap);
-    const output = GreedyMonkey(jsonMap);
+    const output = GreedyMonkey(body123);
     
     console.log(output);
     //res.send(JSON.stringify(output));
