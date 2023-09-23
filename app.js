@@ -2,6 +2,7 @@ const express = require('express');
 const morganBody = require('morgan-body');
 const { LazyDeveloper } = require('./lazy-developer/LazyDeveloper');
 const { GreedyMonkey } = require('./greedy-monkey/GreedyMonkey');
+const { DigitalColony } = require('./digital-colony/DigitalColony');
 const PORT = process.env.PORT || 5000;
 
 
@@ -13,26 +14,26 @@ app.get('/', (req, res) => {
     "w": 100,
     "v": 150,
     "f": [
-            [
-                    60,
-                    70,
-                    60
-            ],
-            // [
-            //         30,
-            //         80,
-            //         40
-            // ],
-            // [
-            //         35,
-            //         70,
-            //         70
-            // ]
+      [
+        60,
+        70,
+        60
+      ],
+      // [
+      //         30,
+      //         80,
+      //         40
+      // ],
+      // [
+      //         35,
+      //         70,
+      //         70
+      // ]
     ]
-}
+  }
   const inputMap = inputStr;
 
-  const inputMap2 ={
+  const inputMap2 = {
     "w": 100,
     "v": 150,
     "f": [
@@ -51,7 +52,7 @@ app
     const body123 = req.body;
     console.log(body123);
     const output = GreedyMonkey(body123);
-    
+
     console.log(output);
     //res.send(JSON.stringify(output));
     res.set('Content-Type', 'text/plain');
@@ -59,9 +60,20 @@ app
   })
 
 app
+  .post("/digital-colony", (req, res) => {
+    const reqBody = req.body;
+    console.log(reqBody);
+    const output = DigitalColony(reqBody);
+
+    console.log(output);
+    //res.send(JSON.stringify(output));
+    res.send(output);
+  })
+
+app
   .post("/lazy-developer", (req, res) => {
     const jsonMap = req.body;
-    
+
     const output = LazyDeveloper(jsonMap);
     console.log("jsonMap");
     console.log(jsonMap);

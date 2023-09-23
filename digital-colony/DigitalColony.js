@@ -1,7 +1,7 @@
 
 
 exports.DigitalColony = (generationRequest) => {
-    
+    let returnArray =[];
 
     for(let request of generationRequest){
         const totalGeneration = request['generations'];
@@ -19,12 +19,13 @@ exports.DigitalColony = (generationRequest) => {
             newColony.push(colony[colony.length-1]);
             colony = newColony;
         }
-        
+        returnArray.push(colony.reduce((currSum, i) => currSum + i, 0).toString());
+
         
     }
     
     
 
 
-    return;
+    return returnArray;
 }
