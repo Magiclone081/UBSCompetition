@@ -50,6 +50,7 @@ app
   .post("/greedyMonkey", (req, res) => {
     const jsonMap = JSON.stringify(req.body);
     //const jsonMap = req.body;
+    console.log(jsonMap);
     const output = GreedyMonkey(jsonMap);
     
     console.log(output);
