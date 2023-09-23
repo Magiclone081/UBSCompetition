@@ -47,20 +47,99 @@ app.get('/', (req, res) => {
   // ]
   // const output = GreedyMonkey(inputMap);
   //const output = LazyDeveloper(jsonMap);
-  const parkingLotInfo = {
-    "BusParkingSlots": 1,
-    "CarParkingSlots": 0,
-    "ParkingCharges": {
-      "Bus": 300,
-      "Car": 140,
-      "Bike": 30
-    },
-    "Buses": 3,
-    "Cars": 2,
-    "Bikes": 7
-  };
-  const output = ParkingLot(parkingLotInfo);
-  // console.log(output);
+  // const parkingLotInfo = {
+  //   "BusParkingSlots": 1,
+  //   "CarParkingSlots": 0,
+  //   "ParkingCharges": {
+  //     "Bus": 300,
+  //     "Car": 140,
+  //     "Bike": 30
+  //   },
+  //   "Buses": 3,
+  //   "Cars": 2,
+  //   "Bikes": 7
+  // };
+  // const output = ParkingLot(parkingLotInfo);
+
+
+  // const pieChartInfo = {
+  //   "data": [
+  //     {
+  //       "quantity": 4,
+  //       "price": 5.0,
+  //       "currency": "HKD",
+  //       "sector": "ECommerce",
+  //       "assetClass": "Equity",
+  //       "region": "APAC"
+  //     },
+  //     {
+  //       "quantity": 5,
+  //       "price": 4.0,
+  //       "currency": "JPY",
+  //       "sector": "Finance",
+  //       "assetClass": "FixedIncome",
+  //       "region": "APAC"
+  //     },
+  //     {
+  //       "quantity": 10,
+  //       "price": 6.0,
+  //       "currency": "EUR",
+  //       "sector": "Education",
+  //       "assetClass": "Derivatives",
+  //       "region": "EMEA"
+  //     }
+  //   ],
+  //   "part": "FIRST"
+  // }
+
+  const pieChartInfo = {
+    "data": [
+      {
+        "quantity": 110,
+        "price": 10.0,
+        "currency": "SGD",
+        "sector": "ECommerce",
+        "assetClass": "Equity",
+        "region": "APAC"
+      },
+      {
+        "quantity": 5,
+        "price": 1.0,
+        "currency": "USD",
+        "sector": "Technology",
+        "assetClass": "Equity",
+        "region": "NORTH_AMERICA"
+      },
+      {
+        "quantity": 39,
+        "price": 5.0,
+        "currency": "GBP",
+        "sector": "Education",
+        "assetClass": "Equity",
+        "region": "EMEA"
+      },
+      {
+        "quantity": 32,
+        "price": 100.0,
+        "currency": "Other",
+        "sector": "Pharmaceutical",
+        "assetClass": "Equity",
+        "region": "APAC"
+      },
+      {
+        "quantity": 200,
+        "price": 30.0,
+        "currency": "HKD",
+        "sector": "Technology",
+        "assetClass": "FixedIncome",
+        "region": "APAC"
+      }
+    ],
+    "part": "SECOND" 
+  }
+
+  const output = PieChart(pieChartInfo);
+  console.log(output);
 })
 
 app
