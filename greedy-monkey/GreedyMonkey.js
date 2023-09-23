@@ -4,7 +4,6 @@ exports.GreedyMonkey = (InputMap) => {
     const noOfWeightMonkeyCarry = InputMap['w'];
     const basketVolume = InputMap['v'];
     const allFruits = InputMap['f'];
-    console.log(allFruits instanceof Array);
     // let currentWeight = 0;
     // let volumeUsed = 0;
     // let currentScore = 0;
@@ -20,35 +19,7 @@ const iterativeGreedyMonkey = (allFruits, noOfRemainingWeightMonkeyCarry, noOfRe
     let result = 0;
     let index = 0;
   
-    while (true) {
-      if (index >= allFruits.length) {
-        if (stack.length === 0) {
-          break;
-        }
-        const { fruits, weight, volume, score } = stack.pop();
-        result = Math.max(result, score);
-        index = fruits + 1;
-        noOfRemainingWeightMonkeyCarry = weight;
-        noOfRemainingBasketVolume = volume;
-        continue;
-      }
-  
-      const currentFruit = allFruits[index];
-  
-      if (currentFruit[0] <= noOfRemainingWeightMonkeyCarry && currentFruit[1] <= noOfRemainingBasketVolume) {
-        const scoreForAddingFruitToBasket = currentFruit[2];
-        stack.push({
-          fruits: index,
-          weight: noOfRemainingWeightMonkeyCarry - currentFruit[0],
-          volume: noOfRemainingBasketVolume - currentFruit[1],
-          score: scoreForAddingFruitToBasket + result,
-        });
-      }
-  
-      index++;
-    }
-  
-    return result;
+    
   };
 
 const recursiveGreedyMonkey = (allFruits, noOfRemainingWeightMonkeyCarry, noOfRemainingBasketVolume) =>{
