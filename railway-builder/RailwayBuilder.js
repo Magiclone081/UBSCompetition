@@ -45,10 +45,10 @@ const recursiveRailwayBuildingWay = (remainingRailwayLength, trackChoice, dp) =>
         return 0;
     }
         
-    if(dp[trackChoice.length] != undefined && dp[trackChoice.length][remainingRailwayLength] != undefined){
+    if(dp[trackChoice.length][remainingRailwayLength] != undefined){
         return dp[trackChoice.length][remainingRailwayLength];
     }
 
-    return dp[trackChoice.length][remainingRailwayLength] = recursiveRailwayBuildingWay(remainingRailwayLength - trackChoice[trackChoice.length - 1], trackChoice)
-        + recursiveRailwayBuildingWay(remainingRailwayLength, trackChoice);
+    return dp[trackChoice.length][remainingRailwayLength] = recursiveRailwayBuildingWay(remainingRailwayLength - trackChoice[trackChoice.length - 1], trackChoice, dp)
+        + recursiveRailwayBuildingWay(remainingRailwayLength, trackChoice, dp);
 }
