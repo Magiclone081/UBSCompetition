@@ -58,6 +58,9 @@ exports.ParkingLot = (parkingLotInfoMap) => {
                     busParkingSlotsUser['Bike'] += 12;
                     vehiclesRemaining['Bike'] -= 12;
                 }
+                else{
+                    break;
+                }
 
 
             }
@@ -85,6 +88,9 @@ exports.ParkingLot = (parkingLotInfoMap) => {
                 else if (vehiclesRemaining['Car'] >= 2) {
                     busParkingSlotsUser['Car'] += 2;
                     vehiclesRemaining['Car'] -= 2;
+                }
+                else{
+                    break;
                 }
             }
         }
