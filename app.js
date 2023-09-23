@@ -59,7 +59,7 @@ app.get('/', (req, res) => {
     "Bikes": 7
   };
   const output = ParkingLot(parkingLotInfo);
-  console.log(output);
+  // console.log(output);
 })
 
 app
