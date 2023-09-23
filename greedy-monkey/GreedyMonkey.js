@@ -44,17 +44,17 @@ const knapsackTwoConstraints = (items, maxWeight, maxVolume) => {
     }
   
     // Trace back to find the selected items
-    // const selectedItems = [];
-    // let w = maxWeight;
-    // let v = maxVolume;
-    // for (let i = n; i >= 1; i--) {
-    //   if (dp[i][w][v] !== dp[i - 1][w][v]) {
-    //     const { weight, volume, value } = items[i - 1];
-    //     selectedItems.push([ weight, volume, value]);
-    //     w -= weight;
-    //     v -= volume;
-    //   }
-    // }
+    const selectedItems = [];
+    let w = maxWeight;
+    let v = maxVolume;
+    for (let i = n; i >= 1; i--) {
+      if (dp[i][w][v] !== dp[i - 1][w][v]) {
+        const { weight, volume, value } = items[i - 1];
+        selectedItems.push([ weight, volume, value]);
+        w -= weight;
+        v -= volume;
+      }
+    }
   
     const maxValue = dp[n][maxWeight][maxVolume];
     return maxValue;
