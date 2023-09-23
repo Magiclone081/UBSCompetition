@@ -12,9 +12,53 @@ exports.GreedyMonkey = (InputMap) => {
     
     //let dp = new Array(allFruits.length+1).fill().map(() => new Array(noOfWeightMonkeyCarry).fill().map(() => new Array(basketVolume)));
     //let dp = Array.from({ length: allFruits.length+1 }, () =>Array.from({ length: noOfWeightMonkeyCarry+1 }, () =>Array.from({ length: basketVolume+1 }, () => -1)));
-    
+    return knapsackTwoConstraints(allFruits, noOfWeightMonkeyCarry, basketVolume);
     return recursiveGreedyMonkey(allFruits, noOfWeightMonkeyCarry, basketVolume)[0];
 }
+
+const knapsackTwoConstraints = (items, maxWeight, maxVolume) => {
+    const n = items.length;
+  
+    // Create a 2D matrix to store the maximum value for each subproblem
+    let dp = Array.from({ length: n + 1 }, () =>
+    Array.from({ length: maxWeight + 1 }, () =>
+      Array.from({ length: maxVolume + 1 }, () => 0)
+    )
+  );
+  
+    // Fill the matrix using dynamic programming
+    for (let i = 1; i <= n; i++) {
+      const [ weight, volume, value ] = items[i - 1];
+      for (let w = 0; w <= maxWeight; w++) {
+        for (let v = 0; v <= maxVolume; v++) {
+          if (weight <= w && volume <= v) {
+            dp[i][w][v] = Math.max(
+              dp[i - 1][w][v],
+              dp[i - 1][w - weight][v - volume] + value
+            );
+          } else {
+            dp[i][w][v] = dp[i - 1][w][v];
+          }
+        }
+      }
+    }
+  
+    // Trace back to find the selected items
+    // const selectedItems = [];
+    // let w = maxWeight;
+    // let v = maxVolume;
+    // for (let i = n; i >= 1; i--) {
+    //   if (dp[i][w][v] !== dp[i - 1][w][v]) {
+    //     const { weight, volume, value } = items[i - 1];
+    //     selectedItems.push([ weight, volume, value]);
+    //     w -= weight;
+    //     v -= volume;
+    //   }
+    // }
+  
+    const maxValue = dp[n][maxWeight][maxVolume];
+    return maxValue;
+  }
 
 
 
