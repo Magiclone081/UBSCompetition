@@ -1,7 +1,9 @@
 
 exports.PieChart = (inputMap) => {
     if (inputMap['part'] === "FIRST") {
-        return pieChartCreator(inputMap['data']);
+        return {
+            "instruments": pieChartCreator(inputMap['data'])
+        };
     }
     else if (inputMap['part'] === "SECOND") {
         return splitChordDiagramCreator(inputMap['data']);
