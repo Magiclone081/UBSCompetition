@@ -1,103 +1,47 @@
 const express = require('express');
 const morganBody = require('morgan-body');
 const { LazyDeveloper } = require('./lazy-developer/LazyDeveloper');
+const { GreedyMonkey } = require('./greedy-monkey/GreedyMonkey');
 const PORT = process.env.PORT || 5000;
 
 const app = express().use(express.json());
 morganBody(app, { noColors: process.env.NODE_ENV === 'production' });
 
 app.get('/', (req, res) => {
-  const jsonMap = {
-    "classes": [
-      {
-        Order: {
-          orderId: 'String',
-          version: 'Long',
-          orderType: 'OrderType',
-          orderSide: 'OrderSide',
-          status: 'Status',
-          allocations: 'List<Allocation>',
-          goodUntilDate: 'LocalDate',
-          externalEventOrigin: 'EventOrigin',
-          submissionTime: 'Instant?'
-        },
-        EventOrigin: [ 'Channel', 'ExecutionOrigin' ],
-        Channel: [ 'SoulAsia', 'SoulAsiaIM' ],
-        ExecutionOrigin: [ 'TradingHeaven', 'Anaconda' ],
-        OrderType: [ 'MarketOrderType', 'LimitOrderType' ],
-        MarketOrderType: '',
-        LimitOrderType: { price: 'Double' },
-        OrderSide: [ 'Buy', 'Sell' ],
-        Status: [
-          'PendingValidation',
-          'New',
-          'Verifying',
-          'PendingExecution',
-          'Working',
-          'PartiallyFilled',
-          'Filled',
-          'Cancelled'
-        ],
-        Allocation: [ 'BigDecimalAllocation', 'LongAllocation', 'EmptyAllocation' ],
-        LongAllocation: {
-          allocationId: 'AllocationId',
-          cif: 'Cif',
-          portfolioId: 'PortfolioId',
-          quantity: 'LongQuantity',
-          clientInstruction: 'ClientInstruction'
-        },
-        BigDecimalAllocation: {
-          allocationId: 'AllocationId',
-          cif: 'Cif',
-          portfolioId: 'PortfolioId',
-          quantity: 'BigDecimalQuantity',
-          clientInstruction: 'ClientInstruction'
-        },
-        EmptyAllocation: '',
-        AllocationId: [ 'InternalAllocationId', 'ExternalAllocationId' ],
-        InternalAllocationId: { orderId: 'String', portfolioId: 'PortfolioId' },
-        Cif: { id: 'String' },
-        PortfolioId: { id: 'String' },
-        ExternalAllocationId: { id: 'String' },
-        Quantity: [ 'LongQuantity', 'BigDecimalQuantity' ],
-        LongQuantity: { quantity: 'Long' },
-        BigDecimalQuantity: { quantity: 'BigDecimal' },
-        ClientInstruction: { solicitation: 'Solicitation', clientContact: 'ClientContact' },
-        Solicitation: [ 'EXECUTION', 'NON_EXECUTION' ],
-        ClientContact: [ 'WithClientContact', 'WithoutClientContact' ],
-        WithClientContact: { channel: 'String', details: 'String', timestamp: 'Instant' },
-        WithoutClientContact: ''
-      }
-    ], 
-    statements: [
-      // 'Order.',
-      // 'Order.order',
-      // 'Order.allocations.',
-      // 'Status.P',
-      // 'MarketOrderType.',
-      // '',
-      // 'Allocation.',
-      // 'Status.PartiallyFilled',
-      // 'Status.PartiallyFilld',
-      // 'LongAllocation.clientInstruction.solicitation.',
-      // 'LongAllocation.clientInstruction.clientContact.',
-      // 'Solicitation.EXEC',
-      // 'Aioldfjbghoidfjboidfjoi',
-      // 'Order.submissionTime.',
-      // 'Order.version.',
-      'Order.externalEventOrigin.',
-      // 'EventSource.',
-      // '1234',
-      // 'LimitOrderType.price..',
-      // 'LimitOrderType.price.123.',
-      // 'LimitOrderType.price.123..',
-      // 'LimitOrderType.price.123..value'
+  const inputMap = {
+    "w": 100,
+    "v": 150,
+    "f": [
+      [60, 70, 60],
+      [30, 80, 40],
+      [35, 70, 70]
     ]
   };
-  const output = LazyDeveloper(jsonMap);
+
+  const inputMap2 ={
+    "w": 100,
+    "v": 150,
+    "f": [
+      [110, 80, 60],
+      [80, 155, 90]
+    ]
+  }
+
+  const output = GreedyMonkey(inputMap);
+  //const output = LazyDeveloper(jsonMap);
   console.log(output);
 })
 
+app
+  .post("/greedyMonkey", (req, res) => {
+    const jsonMap = JSON.stringify(req.body);
+    
+    const output = GreedyMonkey(jsonMap);
+    
+    console.log(output);
+    //res.send(JSON.stringify(output));
+    res.send(output);
+  })
 
 app
   .post("/lazy-developer", (req, res) => {
