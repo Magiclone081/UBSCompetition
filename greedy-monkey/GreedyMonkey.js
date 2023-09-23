@@ -13,7 +13,7 @@ exports.GreedyMonkey = (InputMap) => {
     //let dp = new Array(allFruits.length+1).fill().map(() => new Array(noOfWeightMonkeyCarry).fill().map(() => new Array(basketVolume)));
     //let dp = Array.from({ length: allFruits.length+1 }, () =>Array.from({ length: noOfWeightMonkeyCarry+1 }, () =>Array.from({ length: basketVolume+1 }, () => -1)));
     
-    return recursiveGreedyMonkey(allFruits, noOfWeightMonkeyCarry, basketVolume);
+    return recursiveGreedyMonkey(allFruits, noOfWeightMonkeyCarry, basketVolume)[0];
 }
 
 
