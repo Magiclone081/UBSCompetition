@@ -5,7 +5,7 @@ exports.GreedyMonkey = (InputMap) => {
     const basketVolume = InputMap['v'];
     let allFruits = InputMap['f'];
     allFruits = allFruits.map(currFruit => [currFruit[0], currFruit[1], currFruit[2], currFruit[2]*noOfWeightMonkeyCarry*basketVolume/(currFruit[0]*currFruit[1])]);
-    allFruits.sort((a,b) => a[4] - b[4]);
+    allFruits.sort((a,b) => b[4] - a[4]);
     // let currentWeight = 0;
     // let volumeUsed = 0;
     // let currentScore = 0;
