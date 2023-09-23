@@ -3,11 +3,12 @@ exports.RailwayBuilder = (railwayRequest) => {
     let returnArray = [];
     let i = 0;
     let railwayRequirements = [];
-    for(let i = 0; i < railwayRequest.length; i++){
+    for (let i = 0; i < railwayRequest.length; i++) {
         const currentRequest = railwayRequest[i].split(', ');
         const lengthOfRailWay = currentRequest.shift();
         currentRequest.shift();
-        returnArray.push(recursiveRailwayBuildingWay(lengthOfRailWay, currentRequest));
+        let dp = Array(currentRequest.length).fill().map(() => Array(lengthOfRailWay).fill(-1));
+        returnArray.push(recursiveRailwayBuildingWay(lengthOfRailWay, currentRequest, dp));
     }
     // while(i < railwayRequest.length){
     //     const lengthOfRailWay = railwayRequest[i];
@@ -23,7 +24,7 @@ exports.RailwayBuilder = (railwayRequest) => {
     //         lengthOfTrackPiece: lengthOfTrackPiece
     //     });
     // }
-    
+
     // for(let railwayRequirement of railwayRequirements){
     //     returnArray.push(recursiveRailwayBuildingWay(railwayRequirement['lengthOfRailWay'], railwayRequirement['lengthOfTrackPiece']));
     // }
@@ -31,18 +32,23 @@ exports.RailwayBuilder = (railwayRequest) => {
     return returnArray;
 }
 
-const recursiveRailwayBuildingWay = (remainingRailwayLength, trackChoice)=>{
-    if (remainingRailwayLength == 0)
-        return 1;
- 
-    
-    if (remainingRailwayLength < 0)
+const recursiveRailwayBuildingWay = (remainingRailwayLength, trackChoice, dp) => {
+    if (remainingRailwayLength == 0){
+        return dp[trackChoice.length][remainingRailwayLength] = 1;
+    }
+
+    if (remainingRailwayLength < 0){
         return 0;
- 
-    
-    if (trackChoice.length <= 0)
+    }
+
+    if (trackChoice.length <= 0){
         return 0;
- 
-    return recursiveRailwayBuildingWay(remainingRailwayLength - trackChoice[trackChoice.length - 1], trackChoice)
-           + recursiveRailwayBuildingWay(remainingRailwayLength, trackChoice);
+    }
+        
+    if(dp[trackChoice.length][remainingRailwayLength] != -1){
+        return dp[trackChoice.length][remainingRailwayLength];
+    }
+
+    return dp[trackChoice.length][remainingRailwayLength] = recursiveRailwayBuildingWay(remainingRailwayLength - trackChoice[trackChoice.length - 1], trackChoice)
+        + recursiveRailwayBuildingWay(remainingRailwayLength, trackChoice);
 }
