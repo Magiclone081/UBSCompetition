@@ -199,7 +199,7 @@ exports.ParkingLot = (parkingLotInfoMap) => {
             busParkingSlotsUser['Car'] += 1;
         }
     }
-    for (let i = 6; i > 0; i--) {
+    for (let i = 5; i > 0; i--) {
         if (parkingCharges['Car'] < parkingCharges['Bike'] * i) {
             for (; busParkingSlotsUser['Car'] > 0 && vehiclesRemaining['Bike'] >= i; busParkingSlotsUser['Car']--) {
                 vehiclesRemaining['Car'] += 1;
